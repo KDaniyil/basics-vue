@@ -55,7 +55,29 @@
         </ul>
         <div v-else>No Notes present. Please add new note</div>
       </div>
+
+      <div class="card center">
+        <h1>{{ title }}</h1>
+        <div class="form-control">
+          <input type="text" @keyup.enter="addItem" ref="myInput" />
+        </div>
+        <ul class="list" v-if="items.length">
+          <li
+            class="list-item"
+            @click.middle="items.splice(i,1)"
+            v-for=" (item,i) in items"
+            ::key="item"
+          >
+            {{item}}&nbsp; <input type="text" @click.stop />
+          </li>
+          <!-- <li class="list-item" v-for=" (item,key) in person">
+            <strong>{{key}}: </strong> {{item}}
+          </li> -->
+        </ul>
+        <h3 v-else>Not presented items</h3>
+      </div>
     </div>
+
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="app.js"></script>
   </body>

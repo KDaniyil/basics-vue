@@ -5,7 +5,13 @@ const app =  Vue.createApp({
             title: "List of notes",
             placeholderStr: "Please enter your notes...",
             inputValue: "",
-            notes: []
+            notes: [],
+            person:{
+                name: "Daniyil",
+                surname: "Kudryavtsev",
+                age: 33
+            },
+            items:[1,2,3,4,5]
         }
     },
     methods: {
@@ -36,12 +42,20 @@ const app =  Vue.createApp({
         doubleCount(){
             console.log("double count")
             return this.notes.length *2
+        },
+        addItem(){
+            this.items.unshift(this.$refs.myInput.value)
+            this.$refs.myInput.value =" "
         }
+        
     },
     computed:{
         doubleCountComputed(){
             console.log("double count computed")
             return this.notes.length *2
+        },
+        evenItems(){
+            return this.items.filter(i=> i % 2 === 0)
         }
     },
     watch:{
