@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue</title>
+    <link rel="stylesheet" href="theme.css" />
+  </head>
+  <body>
+    <div id="appVue" class="container pt-2">
+      <div class="card center">
+        <h1>Counter: {{counter}}</h1>
+        <div>
+          <button class="btn primary" v-on:click="incrementCounter()">+</button>
+          <button class="btn success" v-on:click="resetCounter()">Reset</button>
+          <button class="btn danger" v-on:click="decrementCounter()">-</button>
+        </div>
+      </div>
+      <div class="card">
+        <h1
+          :style="{
+            color: inputValue.length < 5 ? 'red' : 'darkblue',
+            backgroundColor: inputValue.length < 6 ? 'black': 'green'}"
+        >
+          {{title}}
+        </h1>
+        <div class="form-control">
+          <input
+            type="text"
+            :placeholder="placeholderStr"
+            @keypress.enter="addNewNote"
+            v-model="inputValue"
+          />
+        </div>
+        <button class="btn" @click="addNewNote">Add</button>
+        <hr />
+        <ul class="list" v-if="notes.length > 0">
+          <li class="list-item" v-for="(note,i) in notes">
+            <!-- <span :class="note.length > 5 ? 'primary' : 'bold'"
+              >{{ toUpperCase(note) }}</span
+            > -->
+            <!-- <span
+              :class="{'danger' : true,
+          'bold' : note.length>5}" -->
+            <!-- <span :class="['primary', {note.length > 5 : 'bold'}]"
+              >{{ toUpperCase(note) }}</span
+            > -->
+            <button class="btn danger" v-on:click="deleteNote(i)">del</button>
+          </li>
+          <hr />
+          <li>
+            <strong>total number of notes: {{ notes.length }}</strong> | Double
+            : {{doubleCount()}} | Computed : {{ doubleCountComputed }}
+          </li>
+        </ul>
+        <div v-else>No Notes present. Please add new note</div>
+      </div>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
